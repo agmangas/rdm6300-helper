@@ -38,10 +38,10 @@ public:
 
     void addCallback(
         rdm6300_callback_func,
-        uint16_t,
-        int,
-        bool,
-        bool);
+        uint16_t minReads = 1,
+        int idxReader = -1,
+        bool onlyOnce = true,
+        bool anyTag = false);
 
 private:
     RDM6300* rfids;

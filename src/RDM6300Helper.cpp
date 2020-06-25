@@ -114,10 +114,10 @@ void RDM6300Helper::pollRfids()
 
 void RDM6300Helper::addCallback(
     rdm6300_callback_func callback,
-    uint16_t minReads = 1,
-    int idxReader = -1,
-    bool onlyOnce = true,
-    bool anyTag = false)
+    uint16_t minReads,
+    int idxReader,
+    bool onlyOnce,
+    bool anyTag)
 {
     if (cbCounter >= MAX_RD6300_CALLBACKS) {
         return;
