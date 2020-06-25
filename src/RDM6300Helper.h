@@ -25,27 +25,35 @@ typedef struct
 class RDM6300Helper {
 public:
     RDM6300Helper(
-        RDM6300* rfids,
-        size_t sizeRfids,
-        String** validTags,
-        size_t sizeValidTags,
-        unsigned long pollMs = 1000);
+        RDM6300*,
+        uint16_t,
+        String*,
+        uint16_t,
+        unsigned long);
 
     ~RDM6300Helper();
 
     void initRfids();
     void pollRfids();
-    void addCallback(rdm6300_callback_func, uint16_t, int, bool, bool);
+
+    void addCallback(
+        rdm6300_callback_func,
+        uint16_t,
+        int,
+        bool,
+        bool);
 
 private:
     RDM6300* rfids;
-    size_t sizeRfids;
-    String** validTags;
-    size_t sizeValidTags;
+    uint16_t sizeRfids;
+    String* tags;
+    uint16_t sizeTags;
     unsigned long pollMs;
+
     uint16_t* consecutiveReads;
     String* currentTags;
     unsigned long lastPoll = 0;
+
     int cbCounter = 0;
     RDM6300Callback callbacks[MAX_RD6300_CALLBACKS];
 

@@ -2,14 +2,14 @@
 
 RDM6300Helper::RDM6300Helper(
     RDM6300* rfids,
-    size_t sizeRfids,
-    String** validTags,
-    size_t sizeValidTags,
+    uint16_t sizeRfids,
+    String* tags,
+    uint16_t sizeTags,
     unsigned long pollMs)
     : rfids(rfids)
     , sizeRfids(sizeRfids)
-    , validTags(validTags)
-    , sizeValidTags(sizeValidTags)
+    , tags(tags)
+    , sizeTags(sizeTags)
     , pollMs(pollMs)
 {
     consecutiveReads = new uint16_t[sizeRfids];
@@ -40,8 +40,10 @@ bool RDM6300Helper::isValidTag(int idxReader)
         return false;
     }
 
-    for (uint16_t i = 0; i < sizeValidTags; i++) {
-        if (validTags[idxReader][i].compareTo(currentTags[idxReader]) == 0) {
+    for (uint16_t i = 0; i < sizeTags; i++) {
+        String theTag = tags[(idxReader * sizeTags) + i];
+
+        if (theTag.compareTo(currentTags[idxReader]) == 0) {
             return true;
         }
     }
